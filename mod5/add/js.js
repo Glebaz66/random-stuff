@@ -205,16 +205,58 @@ console.log(
 */
 
 
-const getTotal = ( {product, cost} ) => {
- Object.values(cost).reduce((acc, price) =>{
-   console.log(cost);
-   console.log(product);
-   
-  // return acc + product[price];
- });
-}
-console.log(getTotal({ apples: 25, chicken: 60, milk: 15 })); // 100
+const getTotal = (obj) => Object.keys(obj).reduce((acc, value) => acc + obj[value], 0);
 
-console.log(getTotal({ bread: 10, apples: 25, milk: 15, cheese: 40 })); // 90
+console.log('getTotal: ', getTotal({ apples: 25, chicken: 60, milk: 15 })); // 100
 
-console.log(getTotal({ bread: 10, chicken: 60, cheese: 40 })); // 110
+console.log('getTotal: ', getTotal({ bread: 10, apples: 25, milk: 15, cheese: 40 })); // 90
+
+console.log('getTotal: ', getTotal({ bread: 10, chicken: 60, cheese: 40 })); // 110
+
+/*
+  Напиши функцию getTotalPrice(products, order), где 
+  products - объект со свойствами "имя продукта":"цена за единицу"
+  order - объект со свойствами "имя продукта":"количество единиц".
+  
+  Функция возвращает общую сумму стоимости всех продуктов заказа.
+  
+  Используй метод reduce.
+*/
+
+const products = {
+  bread: 10,
+  milk: 15,
+  apples: 20,
+  cheese: 30,
+  chicken: 40
+};
+
+const orderA = {
+  bread: 2,
+  apples: 4,
+  chicken: 1
+};
+
+const orderB = {
+  bread: 1,
+  milk: 2,
+  cheese: 2,
+  apples: 1
+};
+
+const orderC = {
+  bread: 2,
+  cheese: 2
+};
+const order = {};
+const getTotalPrice = (products, order) => Object.keys(order).reduce((acc, value) => acc + products[value] * order[value], 0);
+// Вызовы функции для проверки
+console.log('products: ', products);
+console.log('order: ', order);
+
+console.log('getTotalPrice: ', getTotalPrice(products, orderA)); // 140
+console.log('getTotalPrice: ', getTotalPrice(products, orderB)); // 120
+console.log('getTotalPrice: ', getTotalPrice(products, orderC)); // 80
+
+
+
