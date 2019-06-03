@@ -13,34 +13,41 @@
 
 const posts = [
   {
-    img: 'https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall-750x500.jpg'
-    title: "Post title 1",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nemo dignissimos ea temporibus voluptatem maiores maxime consequatur impedit nobis sunt similique voluptas accusamus consequuntur, qui modi nesciunt veritatis distinctio rem!",
-    link: 'link-1.com'
+    img: 'https://placeimg.com/400/150/animal',
+    title: 'Post title 1',
+    alt: 'alt Post title 1',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nemo dignissimos ea temporibus voluptatem maiores maxime consequatur impedit nobis sunt similique voluptas accusamus consequuntur, qui modi nesciunt veritatis distinctio rem!',
+    link: 'link-1.com',
   },
   {
-    img: "https://placeimg.com/400/150/nature",
-    title: "Post title 2",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nemo dignissimos ea temporibus voluptatem maiores maxime consequatur impedit nobis sunt similique voluptas accusamus consequuntur, qui modi nesciunt veritatis distinctio rem!",
-    link: 'link-2.com'
+    img: 'https://placeimg.com/400/150/nature',
+    title: 'Post title 2',
+    alt: 'alt Post title 2',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nemo dignissimos ea temporibus voluptatem maiores maxime consequatur impedit nobis sunt similique voluptas accusamus consequuntur, qui modi nesciunt veritatis distinctio rem!',
+    link: 'link-2.com',
   },
   {
-    img: "https://placeimg.com/400/150/arch",
-    title: "Post title 3",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nemo dignissimos ea temporibus voluptatem maiores maxime consequatur impedit nobis sunt similique voluptas accusamus consequuntur, qui modi nesciunt veritatis distinctio rem!",
-    link: 'link-3.com'
-  }
+    img: 'https://placeimg.com/400/150/arch',
+    title: 'Post title 3',
+    alt: 'alt Post title 3',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nemo dignissimos ea temporibus voluptatem maiores maxime consequatur impedit nobis sunt similique voluptas accusamus consequuntur, qui modi nesciunt veritatis distinctio rem!',
+    link: 'link-3.com',
+  },
+  {
+    img: 'https://placeimg.com/400/150/arch',
+    title: 'Post title 3',
+    alt: 'alt Post title 3',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nemo dignissimos ea temporibus voluptatem maiores maxime consequatur impedit nobis sunt similique voluptas accusamus consequuntur, qui modi nesciunt veritatis distinctio rem!',
+    link: 'link-3.com',
+  },
+  {
+    img: 'https://placeimg.com/400/150/arch',
+    title: 'Post title 3',
+    alt: 'alt Post title 3',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nemo dignissimos ea temporibus voluptatem maiores maxime consequatur impedit nobis sunt similique voluptas accusamus consequuntur, qui modi nesciunt veritatis distinctio rem!',
+    link: 'link-3.com',
+  },
 ];
-
-const createImage = img => {
-  const image = document.createElement('img');
-  image.classList.add('post__image');
-  image.setAttribute('srс', img); //img
-  image.alt = 'some alt';
-
-  return image;
-}
-console.log(createImage());
 
 const createTitle = title => {
   const postTitle = document.createElement('h2')
@@ -48,8 +55,19 @@ const createTitle = title => {
   postTitle.textContent = title;
 
   return postTitle;
-} 
-console.log(createTitle());
+}
+
+const createImage = (img, alt) => {
+  const image = document.createElement('img');
+  image.classList.add('post__image');
+  image.setAttribute('src', img); //img
+  image.setAttribute('alt', alt);
+
+  return image;
+}
+console.log(createImage());
+
+// console.log(createTitle());
 
 const createText = text => {
   const postText = document.createElement('p');
@@ -58,28 +76,25 @@ const createText = text => {
 
   return postText;
 }
-console.log(createText());
+// console.log(createText());
 
 const createLink = link => {
   const linkBnt = document.createElement('a');
   linkBnt.classList.add('button');
-  linkBnt.href = '#'; //link
-  linkBnt.textContent = 'click'
+  linkBnt.href = link; //link
+  linkBnt.textContent = 'click';
   return linkBnt;
 }
-console.log(createLink());
+// console.log(createLink());
 
-const createPostCard = ({ img, title, text, link }) => {
+const createPostCard = ({ img, title, alt, text, link }) => {
   const postCard = document.createElement('div');
   postCard.classList.add('post');
-  postCard.append(createImage(img), createTitle(title), createText(text), createLink(link));
-  
+  postCard.append(createTitle(title), createImage(img, alt), createText(text), createLink(link));
   return postCard;
 }
 
-const createCards = posts => {
-  return posts.map(post => createPostCard(post));
-}
+const createCards = posts => posts.map(post => createPostCard(post));
 
 // const elem = posts.map(post => console.log('post', post));
 
