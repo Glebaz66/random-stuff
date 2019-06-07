@@ -20,7 +20,7 @@ const createFullView = ({fullview, alt}) => {
 
 const previewBlock = galleryItems.reduce((elem,{preview, fullview, alt}) => elem + `
 <li>
-    <img src="${preview}" data-fullview="${fullview}" alt="${alt}" class="js-img">
+    <img src="${preview}" data-fullview="${fullview}" alt="${alt}" class="js-img active">
 </li>
 `, '');
 const createPreview = () => {
