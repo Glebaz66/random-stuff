@@ -1,3 +1,4 @@
+'use strick'
 /*
  * Есть массив цветов в hex-формате и кнопки Start и Stop. 
  * 
@@ -9,7 +10,7 @@
  * 
  * Учти, что на кнопку Start можно нажать бесконечное количество раз.
  * Сделай так, чтобы пока изменение темы запушено, кнопка Start была не активна.
-*/
+ */
 
 const colors = [
   // "#FFFFFF",
@@ -33,26 +34,30 @@ const stop = document.querySelector('button[data-action="stop"]');
 const bodyColor = document.querySelector('body');
 
 const сhangeColor = () => {
-    const colorPicker = Math.floor(Math.random() * (colors.length)); 
-    // bodyColor.style.backgroundColor = colors[colorPicker];
-    bodyColor.style.backgroundImage = colors[colorPicker];
-    start.style.backgroundColor = '#ffc7c2';
-    start.style.cursor = 'not-allowed';
-    start.setAttribute('disabled', true);
-    
-  }
-  let counter;
-  
-  const startChangeColor = () =>{
-    counter = setInterval(сhangeColor, 1500);
-    
-  }
-  const stopChangeColor = () => {
-    clearInterval(counter);
-    bodyColor.style.backgroundImage = 'none'
-    start.style.backgroundColor = '#f44336';
-    start.setAttribute('disabled', false);
-  }
+  const colorPicker = Math.floor(Math.random() * (colors.length + 1));
+  // bodyColor.style.backgroundColor = colors[colorPicker];
+  bodyColor.style.backgroundImage = colors[colorPicker];
+
+}
+let counter;
+
+const startChangeColor = () => {
+  start.style.backgroundColor = '#ffc7c2';
+  start.style.cursor = 'not-allowed';
+  start.setAttribute('disabled', true);
+  counter = setInterval(сhangeColor, 1500);
+  console.log(start);
+
+}
+const stopChangeColor = () => {
+  bodyColor.style.backgroundImage = 'none'
+  start.style.backgroundColor = '#f44336';
+  start.style.cursor = 'pointer';
+  start.setAttribute('disabled', false);
+  clearInterval(counter);
+  console.log(stop);
+
+}
 
 start.addEventListener('click', startChangeColor);
 stop.addEventListener('click', stopChangeColor);
